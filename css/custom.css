@@ -35,3 +35,9 @@ main div #custom-color .main-area h1{
     text-align: left;
     background-color: #fff;
   }
+
+.slide {
+    width: 60%;
+    margin: auto; 
+    padding-top: 40px;
+} 
