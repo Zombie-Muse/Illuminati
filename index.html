@@ -3,18 +3,16 @@
     
 <head>
   <meta charset="utf-8">
-    <meta name="author" content="Jason McCormack">
-    <meta name="description" content ="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <title>Illuminati | Welcome</title>
-    <script src="scripts/script.js" defer></script>
+    <!-- <script src="scripts/script.js" defer></script> -->
 </head>
     
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <!-- *****************************************************NAVIGATION MENU********************************************************************* -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark static-top">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item right active">
         <a class="nav-link" href="index.html"><img src="images/pngwave.png" width="30" height="30"></a>
@@ -22,7 +20,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">What We have To Offer</a>
         <div class="dropdown-menu" aria-labelledby="dropdown1">
-          <a class="dropdown-item" href="welcome.html">Welcome</a>
+          <a class="dropdown-item disabled" href="welcome.html"><span aria-hidden="true">Welcome</span></a>
           <a class="dropdown-item" href="about.html">About Us</a>
           <a class="dropdown-item" href="cats.html">Cats</a>
           <a class="dropdown-item" href="contact.html">Contact</a>
@@ -30,57 +28,132 @@
       </li>
     </ul>
   </nav>
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <!-- *******************************************************SLIDES****************************************************************************** -->
+  <div id="carSlide" class="carousel" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carSlide" data-slide-to="0" class="active"></li>
+      <li data-target="#carSlide" data-slide-to="1"></li>
+      <li data-target="#carSlide" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img id="car-custom" class="d-block w-100" src="images/illImage1.png" width="800" alt="First slide">
+        <img id="car-custom" class="d-inline-block w-100" src="images/illImage1.png" width="800" alt="First slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="images/illImage2.jpg" width="800" alt="Second slide">
+        <img class="d-inline-block w-100" src="images/illImage2.jpg" width="800" alt="Second slide">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="images/illImage4.jpg" width="800" alt="Third slide">
+        <img class="d-inline-block w-100" src="images/illImage4.jpg" width="800" alt="Third slide">
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carSlide" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carSlide" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <!-- <div class="jumbotron">
-    <h1 class="display-4">Welcome to the public website for the secret Illuminati</h1>
-    <p class="lead">Have you ever wondered if you are one of the chosen?</p>
-    <hr class="my-4">
-    <p>We just need your first name and age to verify our sources and check our databases for you. No need for a last name. We already know who you are.</p>
-  </div> -->
-  <main role="main" class="container">
-    <div id="custom-color" class="main-area">
+  
+<!-- *****************************************************************UI*********************************************************************** -->
+<form id="getUser" class="mainForm">
+  <div class="form text-center">
+    <label for="nameField">Please enter your human first name</label>
+    <input type="text" id="nameField" class="nameField" placeholder="First Name Only">
+    <label for="ageField">Please enter your age</label>
+    <input type="number" id="ageField" class="ageField" placeholder="Age in Years">
+    <input type="submit" value="Choose Me" class="submitInfo">
+  </div>
+  <div class="resultField text-center">
+    <p class="test"></p>
+    <p class="info"></p>
+    <p class="result"></p>
+    <p id="link" class="link"></p>
+  </div>
+  </form> 
+
+    <!-- ******************************************************RESULTS******************************************************************** -->
+  <script>
+    let randomNum = Math.floor(Math.random() * 100) + 1;
+    const nameField = document.querySelector('.nameField');
+    const ageField = document.querySelector('.ageField');
+    const submitInfo = document.querySelector('.submitInfo');
+    const info = document.querySelector('.info');
+    const result = document.querySelector('.resultField');
+    const linkDiv = document.querySelector('link');
+    let resetButton;
+    let welcome =  false;
+    submitInfo.addEventListener('click', checkAge);
+    let test = document.querySelector('.test');
+    console.log(randomNum);
+
+    function checkAge() {
+      let ageNum = Number(ageField.value);
+      nameField.disabled = true;
+      ageField.disabled = true;
+      submitInfo.disabled = true;
+
+      info.textContent = nameField.value + ", " + ageField.value;
+
+      if (ageNum >= randomNum) {
+
+        welcome = true;
+        welcomeDeny(welcome);
+      }
+      else {
+        welcomeDeny(welcome);
+      }
+    }
+
+    function welcomeDeny() {
+      if (welcome === true) {
       
-      <form class="text-center">
-        <div class="form-group text-center">
-          <label for="name">Please enter your birth name</label>
-          <input class="form-control" type="text" placeholder="First name only">
-          <small id="notice" class="form-text text muted">We know who you are.</small>
-        </div>
-        <div class="form-group text-center">
-          <label for="age">Please enter your age</label>
-          <input class="form-control" type="number" placeholder="Age in years">
-        </div>
-        <div class="text-center">
-          <button type="button" class="btn btn-primary btn-lg btn-custom">Choose Me!</button>
-        </div>
-      </form>
-    </div>
-    <div class="result">
+      result.textContent = "Welcome brother/sister/other to the New World Order! Please proceed";
+      result.style.backgroundColor = 'green';
+      result.style.color = 'white';
+      var div = document.createElement('div');
+      div.innerHTML = linkDiv;
+      document.getElementById('link').appendChild(div);
+      linkDiv = document.createTextNode("Click here for the next step in your illumination");
+
+      let a = 1;
+      console.log(a);
+      }
+      else {
+        result.textContent = "Sorry. You're just a normie. Would you like to try again?";
+        let b = 0;
+        console.log(b);
+        result.style.backgroundColor = 'red';
+        result.style.color = 'white';
+      }
+      resetButton = document.createElement('button');
+      resetButton.textContent = "Try again?";
+      document.body.appendChild(resetButton);
+      resetButton.addEventListener('click', resetForm);
+
+    }
+
+    function resetForm() {
+      const resetResults = document.querySelectorAll('.resultField p');
+      resetResults.textContent = '';
+      resetButton.parentNode.removeChild(resetButton);
+      nameField.disabled = false;
+      ageField.disabled = false;
+      submitInfo.disabled = false;
+      result.textContent = "";
+      ageField.textContent = "";
+      nameField.textContent = "";
+      info.textContent = '';
+      nameField.focus();
+      welcome = false;
+      result.style.backgroundColor = 'white';
+      randomNum = Math.floor(Math.random() * 100) + 1;
+      console.log(randomNum);
+      console.log(welcome);
+    
+    }
+  </script>
       
 
     </div>

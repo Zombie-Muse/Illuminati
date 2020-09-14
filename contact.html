@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <title>Illuminati | Welcome</title>
-    <script src="scripts/script.js" defer></script>
+    <!-- <script src="scripts/script.js" defer></script> -->
 </head>
     
 <body>
@@ -22,18 +22,43 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">What We have To Offer</a>
         <div class="dropdown-menu" aria-labelledby="dropdown1">
-          <a class="dropdown-item" href="welcome.html">Welcome</a>
+          <a class="dropdown-item disabled" href="welcome.html">Welcome</a>
           <a class="dropdown-item" href="about.html">About Us</a>
           <a class="dropdown-item" href="cats.html">Cats</a>
-          <a class="dropdown-item" href="contact.html">Contact</a>
+          <a class="dropdown-item active" href="contact.html">Contact<span class="sr-only"></span></a>
         </div>
       </li>
     </ul>
   </nav>
 
   
-  <main role="main" class="container"></main>
-      
+  <main role="main" class="container">
+    <h1>Illuminati contact</h1>
+    <form class="needs-validation" novalidate>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputFirstName">First Name</label>
+          <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputLastName">Last Name</label>
+          <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="message">message</label>
+          <textarea class="form-control" id="message" rows="4"></textarea>
+        </div>
+      </div>
+    </form>
+
   </main>
       
       <script src="bootstrap/js/jquery.slim.js"></script>
