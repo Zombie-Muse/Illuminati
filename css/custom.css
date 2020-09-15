@@ -61,25 +61,25 @@ main div #custom-color .main-area h1{
     -ms-flex-pack: center;
     justify-content: center;
     padding-left: 0;
-    max-width:800px;
+    /* max-width:800px; */
     margin-right: 15%;
     margin-left: 15%;
     list-style: none;
   }
 
 #carSlide {
-    max-width: 800px;
-    width: 90%;
+    /* max-width: 800px; */
+    width: 100%;
     margin: auto;
-    padding-top: 40px;
+    padding-top: 20px;
 
 }
 
-.carousel .slide {
-    width: 60%;
+/* .carousel .slide {
+    width: 100%;
     margin: auto; 
     padding-top: 40px;
-} 
+}  */
 
 .result-border {
     border-color: dimgrey;
