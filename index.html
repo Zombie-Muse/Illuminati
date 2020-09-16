@@ -115,9 +115,10 @@
       result.textContent = "Welcome brother/sister/other to the New World Order! Please proceed";
       result.style.backgroundColor = 'green';
       result.style.color = 'white';
-      var div = document.createElement('div');
-      div.innerHTML = linkDiv;
-      document.getElementById('link').appendChild(div);
+      var x = document.createElement('div');
+      // div.innerHTML = linkDiv;
+      var l = document.querySelector('link');
+      l.appendChild(x);
       linkDiv = document.createTextNode("Click here for the next step in your illumination");
 
       let a = 1;
