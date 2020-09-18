@@ -12,17 +12,16 @@
     padding: 3px;
 }
 
+.linkDiv {
+    margin: 0 auto;
+}
+
 .form-group, .text-center {
     /* width: 80%; */
     padding: 15%;
     padding-top: 5px;
     padding-bottom: 5px;
     /* background-color: black; */
-}
-
-.btn, .btn-primary, .btn-lg, .btn-custom {
-    background-color: red;
-    offset-position: 50%;
 }
 
 .main-area {
@@ -68,18 +67,12 @@ main div #custom-color .main-area h1{
   }
 
 #carSlide {
-    /* max-width: 800px; */
+    max-height: 400px;
     width: 100%;
     margin: auto;
-    padding-top: 20px;
+    padding: auto;
 
 }
-
-/* .carousel .slide {
-    width: 100%;
-    margin: auto; 
-    padding-top: 40px;
-}  */
 
 .result-border {
     border-color: dimgrey;
