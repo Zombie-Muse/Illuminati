@@ -68,7 +68,7 @@
     <input type="button" value="Choose Me" class="btn btn-dark submitInfo">
   </div>
   </form>
-  <div class="resultField text-center">         <!--creates a div for the results and link-->
+  <div class="resultField text-center linkRef">         <!--creates a div for the results and link-->
     <p class="info"></p>
     <p class="result"></p>
     <p class="linkDiv"></p>
@@ -77,24 +77,19 @@
     <!-- ****************************************RESULTS************************************************ -->
   <script>
     let randomNum = Math.floor(Math.random() * 100) + 1;
-    const NAME_FIELD = document.querySelector('.nameField');
-    const AGE_FIELD = document.querySelector('.ageField');
-    const SUBMIT_INFO = document.querySelector('.submitInfo');
-    const INFO = document.querySelector('.info');
-    const RESULT = document.querySelector('.result');
-    const LINK_DIV = document.querySelector('.linkDiv');
-
-    let linkSection = document.createElement("div");      //creates div for link
-    let linkRef = document.createElement("a");            //creates anchor and link
-    linkSection.appendChild(linkRef);
-    linkRef.setAttribute("id", "linkRef");
+    const NAME_FIELD = document.querySelector(".nameField");
+    const AGE_FIELD = document.querySelector(".ageField");
+    const SUBMIT_INFO = document.querySelector(".submitInfo");
+    const INFO = document.querySelector(".info");
+    const RESULT = document.querySelector(".result");
+    const LINK_DIV = document.querySelector(".linkDiv");
 
     let resetButton;
     let welcome =  false;
-    SUBMIT_INFO.addEventListener('click', checkAge);
+    SUBMIT_INFO.addEventListener("click", checkAge);
     console.log(randomNum);               //prints the random number to the console for testing purposes
 
-    function checkAge() {                 //checks age against the random number and disables fields and button
+    function checkAge() {    
       let ageNum = Number(AGE_FIELD.value);
       NAME_FIELD.disabled = true;
       AGE_FIELD.disabled = true;
@@ -103,10 +98,9 @@
       INFO.textContent = NAME_FIELD.value + ", " + AGE_FIELD.value;             //prints name and age results to screen
 
       if (ageNum >= randomNum) {
-
         welcome = true;
         welcomeDeny(welcome);
-      }
+        }
       else {
         welcomeDeny(welcome);
       }
@@ -117,6 +111,7 @@
       let linkRef = document.createElement("a"); 
       LINK_DIV.appendChild(linkSection);
       linkSection.appendChild(linkRef);
+      linkSection.setAttribute("class", "linkRef linkStyle");
 
       if (welcome === true) {                                 //Determines whether user is granted or denied access to welcome page
 
@@ -128,9 +123,6 @@
         linkRef.setAttribute("id", "linkRef");
         linkRef.setAttribute("title", "Welcome! Please proceed here.");
         linkRef.textContent = "Welcome! Please click here to proceed.";
-
-        let a = 1;                //for testing whether we see granted message or deny message
-        console.log(a);
       }
       else {
         //**************************************DENY**************************************************
@@ -145,19 +137,20 @@
         let b = 0;
         console.log(b);
       }
-      resetButton = document.createElement('button');
+      resetButton = document.createElement("button");
       resetButton.textContent = "Try again?";
       document.body.appendChild(resetButton);
-      resetButton.addEventListener('click', resetForm);
+      resetButton.addEventListener("click", resetForm);
 
     }
-
-    function resetForm() {                    //removes the try again button and resets the page
-      var resetResults = document.querySelectorAll('.resultField p');
-      var resetLink = document.getElementById('linkRef');
-      resetResults.textContent = '';
+      //**************************************RESET******************************************************
+    function resetForm() {                  
+      var resetResults = document.querySelectorAll(".resultField p");
+      var resetLink = document.getElementById("linkRef");
+      resetResults.textContent = "";
       resetButton.parentNode.removeChild(resetButton);
       resetLink.parentNode.removeChild(resetLink);
+      document.querySelector(".linkRef").classList.toggle(".linkStyle");  //doesn't seem to be working
       
       NAME_FIELD.disabled = false;
       AGE_FIELD.disabled = false;
@@ -165,11 +158,12 @@
       RESULT.textContent = "";
       AGE_FIELD.textContent = "";
       NAME_FIELD.textContent = "";
-      INFO.textContent = '';
+      INFO.textContent = "";
       NAME_FIELD.focus();
       welcome = false;
       document.querySelector(".resultField").setAttribute("style", "color: black; background-color: white; padding 2em;");
       randomNum = Math.floor(Math.random() * 100) + 1;
+      
     }
   </script>
       

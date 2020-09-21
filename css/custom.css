@@ -1,4 +1,31 @@
 
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: gray;
+}
+
+.popup-content {
+    background-color: lightgray;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid black;
+    width: 80%;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 .mainForm {
     width: 50%;
@@ -12,8 +39,20 @@
     padding: 3px;
 }
 
-.linkDiv {
+.linkStyle {
+    width: 60%;
     margin: 0 auto;
+    /* border: 2px solid black; */
+}
+
+#linkRef {
+    text-decoration: none;
+    color: white;
+}
+
+#linkRef:hover, #linkRef:focus {
+    color: wheat;
+    cursor: pointer;
 }
 
 .form-group, .text-center {
