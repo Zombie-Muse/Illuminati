@@ -37,25 +37,42 @@
       is highly secret (obviously), so it goes without saying that if any of this leaks, we know where you are and you will be destroyed. 
     </p>
     <p>Now then, please review and accept our terms and conditions</p>
-    <button id="terms" class="btn btn-dark">Terms</button>
-    <div id="popupTerms" class="popup">
-      <div class="popup-content">
-        <span class="close">&times;</span>
-        <p>We are the Illuminati. We do whatever we want.</p>
+    <button type="button" id="terms" class="btn btn-dark" data-toggle="modal" data-target="modalCenter">Terms</button>
+    <div class="modal-fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="termsAndConditions" aria-hidden="true"> 
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header">
+            <h5 class="modal-title">Terms and Conditions</h5>
+            <button type="button" class="btn btn-light close text-center" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>We are the Illuminati. We can do whatever we want. You must submit.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button"class="btn btn-light" data-dismiss="modal">ACCEPT</button>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
 
   <script>
+    $("modalCenter").modal("show");
+  </script>
+  <!-- <script>
     var popup = document.getElementById("popupTerms");
     var btn = document.getElementById("terms");
-    var span = document.getElementsByClassName("close")[0];
+    var btnSpan = document.getElementsByClassName("close")[0];
 
     btn.onclick = function() {
       popup.style.display = "block";
     }
 
-    span.onclick = function() {
+    btnSpan.onclick = function() {
       popup.style.display = "none";
     }
 
@@ -64,82 +81,82 @@
         popup.style.display = "none";
       }
     }
-  </script>
+  </script> -->
 
   <canvas id="myCanvas" class="text-center" width="1000px" height="1000px">     <!--code for fireworks taken from https://slicker.me/javascript/fireworks.htm-->
     <script>
       
-    //   const max_fireworks = 5,
-    //   max_sparks = 50;
-    //   let canvas = document.getElementById('myCanvas');
-    //   let context = canvas.getContext('2d');
-    //   let fireworks = [];
+      const max_fireworks = 5,
+      max_sparks = 50;
+      let canvas = document.getElementById('myCanvas');
+      let context = canvas.getContext('2d');
+      let fireworks = [];
  
-    // for (let i = 0; i < max_fireworks; i++) {
-    //   let firework = {
-    //     sparks: []
-    //   };
-    // for (let n = 0; n < max_sparks; n++) {
-    //   let spark = {
-    //     vx: Math.random() * 5 + .5,
-    //     vy: Math.random() * 5 + .5,
-    //     weight: Math.random() * .3 + .03,
-    //     red: Math.floor(Math.random() * 2),
-    //     green: Math.floor(Math.random() * 2),
-    //     blue: Math.floor(Math.random() * 2)
-    //     };
-    //   if (Math.random() > .5) spark.vx = -spark.vx;
-    //   if (Math.random() > .5) spark.vy = -spark.vy;
-    //   firework.sparks.push(spark);
-    //   }
-    // fireworks.push(firework);
-    // resetFirework(firework);
-    // }
-    // window.requestAnimationFrame(explode);
+    for (let i = 0; i < max_fireworks; i++) {
+      let firework = {
+        sparks: []
+      };
+    for (let n = 0; n < max_sparks; n++) {
+      let spark = {
+        vx: Math.random() * 5 + .5,
+        vy: Math.random() * 5 + .5,
+        weight: Math.random() * .3 + .03,
+        red: Math.floor(Math.random() * 2),
+        green: Math.floor(Math.random() * 2),
+        blue: Math.floor(Math.random() * 2)
+        };
+      if (Math.random() > .5) spark.vx = -spark.vx;
+      if (Math.random() > .5) spark.vy = -spark.vy;
+      firework.sparks.push(spark);
+      }
+    fireworks.push(firework);
+    resetFirework(firework);
+    }
+    window.requestAnimationFrame(explode);
  
-    // function resetFirework(firework) {
-    //   firework.x = Math.floor(Math.random() * canvas.width);
-    //   firework.y = canvas.height;
-    //   firework.age = 0;
-    //   firework.phase = 'fly';
-    // }
+    function resetFirework(firework) {
+      firework.x = Math.floor(Math.random() * canvas.width);
+      firework.y = canvas.height;
+      firework.age = 0;
+      firework.phase = 'fly';
+    }
  
-    // function explode() {
-    //   context.clearRect(0, 0, canvas.width, canvas.height);
-    //   fireworks.forEach((firework,index) => {
-    //     if (firework.phase == 'explode') {
-    //       firework.sparks.forEach((spark) => {
-    //       for (let i = 0; i < 10; i++) {
-    //         let trailAge = firework.age + i;
-    //         let x = firework.x + spark.vx * trailAge;
-    //         let y = firework.y + spark.vy * trailAge + spark.weight * trailAge * spark.weight * trailAge;
-    //         let fade = i * 20 - firework.age * 2;
-    //         let r = Math.floor(spark.red * fade);
-    //         let g = Math.floor(spark.green * fade);
-    //         let b = Math.floor(spark.blue * fade);
-    //         context.beginPath();
-    //         context.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',1)';
-    //         context.rect(x, y, 4, 4);
-    //         context.fill();
-    //       }
-    //     });
-    //     firework.age++;
-    //     if (firework.age > 100 && Math.random() < .05) {
-    //       resetFirework(firework);
-    //     }
-    //     } else {
-    //       firework.y = firework.y - 10;
-    //       for (let spark = 0; spark < 15; spark++) {
-    //       context.beginPath();
-    //       context.fillStyle = 'rgba(' + index * 50 + ',' + spark * 17 + ',0,1)';
-    //       context.rect(firework.x + Math.random() * spark - spark / 2, firework.y + spark * 4, 4, 4);
-    //       context.fill();
-    //     }
-    //     if (Math.random() < .001 || firework.y < 200) firework.phase = 'explode';
-    //     }
-    //   });
-    // window.requestAnimationFrame(explode);
-    // }
+    function explode() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      fireworks.forEach((firework,index) => {
+        if (firework.phase == 'explode') {
+          firework.sparks.forEach((spark) => {
+          for (let i = 0; i < 10; i++) {
+            let trailAge = firework.age + i;
+            let x = firework.x + spark.vx * trailAge;
+            let y = firework.y + spark.vy * trailAge + spark.weight * trailAge * spark.weight * trailAge;
+            let fade = i * 20 - firework.age * 2;
+            let r = Math.floor(spark.red * fade);
+            let g = Math.floor(spark.green * fade);
+            let b = Math.floor(spark.blue * fade);
+            context.beginPath();
+            context.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+            context.rect(x, y, 4, 4);
+            context.fill();
+          }
+        });
+        firework.age++;
+        if (firework.age > 100 && Math.random() < .05) {
+          resetFirework(firework);
+        }
+        } else {
+          firework.y = firework.y - 10;
+          for (let spark = 0; spark < 15; spark++) {
+          context.beginPath();
+          context.fillStyle = 'rgba(' + index * 50 + ',' + spark * 17 + ',0,1)';
+          context.rect(firework.x + Math.random() * spark - spark / 2, firework.y + spark * 4, 4, 4);
+          context.fill();
+        }
+        if (Math.random() < .001 || firework.y < 200) firework.phase = 'explode';
+        }
+      });
+    window.requestAnimationFrame(explode);
+    }
     </script>
   </canvas>
       

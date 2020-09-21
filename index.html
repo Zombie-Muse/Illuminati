@@ -3,8 +3,8 @@
     
 <head>
   <meta charset="utf-8">
-  <meta name="author" content="Jason McCormack">
-  <meta name="description" content ="">
+  <meta name="author" content="Gary McCormack">
+  <meta name="description" content ="CIS3110 Project 1">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -39,7 +39,7 @@
     </ol>
     <div id="carSlide" class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-inline-block w-100" src="images/illImage1.png" alt="First slide">
+        <img class="d-inline-block w-100" src="images/illImage5.jpg" alt="First slide">
       </div>
       <div id="carSlide" class="carousel-item">
         <img class="d-inline-block w-100" src="images/illImage2.jpg" alt="Second slide">
@@ -48,11 +48,11 @@
         <img class="d-inline-block w-100" src="images/illImage4.jpg" alt="Third slide">
       </div>
     </div>
-    <a class="carousel-control-prev" href="#" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carSlide" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#carSlide" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -64,113 +64,110 @@
     <label for="nameField">Please enter your human first name</label>
     <input type="text" id="nameField" class="nameField" placeholder="First Name Only">
     <label for="ageField">Please enter your age</label>
-    <input type="number" id="ageField" class="ageField" placeholder="Age in Years">
-    <input type="button" value="Choose Me" class="btn btn-dark submitInfo">
+    <input type="number" id="ageField" class="ageField" placeholder="Age in Years"></br></br>
+    <input title="Find out if you are one of the chosen" type="button chosen" value="Am I Chosen?" class="btn btn-dark submitInfo">
   </div>
-  </form>
-  <div class="resultField text-center linkRef">         <!--creates a div for the results and link-->
-    <p class="info"></p>
-    <p class="result"></p>
-    <p class="linkDiv"></p>
-  </div> 
+</form>
+<div class="resultField text-center linkRef">         <!--creates a div for the results and link-->
+  <p class="info"></p>
+  <p class="result"></p>
+  <p class="linkDiv"></p>
+  <p class="tryAgain"></p>
+</div> 
 
-    <!-- ****************************************RESULTS************************************************ -->
-  <script>
-    let randomNum = Math.floor(Math.random() * 100) + 1;
-    const NAME_FIELD = document.querySelector(".nameField");
-    const AGE_FIELD = document.querySelector(".ageField");
-    const SUBMIT_INFO = document.querySelector(".submitInfo");
-    const INFO = document.querySelector(".info");
-    const RESULT = document.querySelector(".result");
-    const LINK_DIV = document.querySelector(".linkDiv");
+  <!-- ****************************************RESULTS************************************************ -->
+<script>
+  let randomNum = Math.floor(Math.random() * 100) + 1;
+  const NAME_FIELD = document.querySelector(".nameField");
+  const AGE_FIELD = document.querySelector(".ageField");
+  const SUBMIT_INFO = document.querySelector(".submitInfo");
+  const INFO = document.querySelector(".info");
+  const RESULT = document.querySelector(".result");
+  const LINK_DIV = document.querySelector(".linkDiv");
+  const TRY_AGAIN = document.querySelector(".tryAgain");
 
-    let resetButton;
-    let welcome =  false;
-    SUBMIT_INFO.addEventListener("click", checkAge);
-    console.log(randomNum);               //prints the random number to the console for testing purposes
+  let resetButton;
+  let welcome =  false;
+  SUBMIT_INFO.addEventListener("click", checkAge);
+  // console.log(randomNum);               //prints the random number to the console for testing purposes
 
-    function checkAge() {    
-      let ageNum = Number(AGE_FIELD.value);
-      NAME_FIELD.disabled = true;
-      AGE_FIELD.disabled = true;
-      SUBMIT_INFO.disabled = true;
+  function checkAge() {    
+    let ageNum = Number(AGE_FIELD.value);
+    NAME_FIELD.disabled = true;
+    AGE_FIELD.disabled = true;
+    SUBMIT_INFO.disabled = true;
 
-      INFO.textContent = NAME_FIELD.value + ", " + AGE_FIELD.value;             //prints name and age results to screen
+    INFO.textContent = NAME_FIELD.value + ", " + AGE_FIELD.value;             //prints name and age results to screen
 
-      if (ageNum >= randomNum) {
-        welcome = true;
-        welcomeDeny(welcome);
-        }
-      else {
-        welcomeDeny(welcome);
+    if (ageNum >= randomNum) {
+      welcome = true;
+      welcomeDeny(welcome);
       }
+    else {
+      welcomeDeny(welcome);
     }
+  }
 
-    function welcomeDeny() {                                       //creates div and link to welcome screen
-      let linkSection = document.createElement("div");
-      let linkRef = document.createElement("a"); 
-      LINK_DIV.appendChild(linkSection);
-      linkSection.appendChild(linkRef);
-      linkSection.setAttribute("class", "linkRef linkStyle");
+  function welcomeDeny() {                                       //creates div and link to welcome screen
+    let linkSection = document.createElement("div");
+    let linkRef = document.createElement("a"); 
+    LINK_DIV.appendChild(linkSection);
+    linkSection.appendChild(linkRef);
+    linkSection.setAttribute("class", "linkRef linkStyle");
 
-      if (welcome === true) {                                 //Determines whether user is granted or denied access to welcome page
+    let tryAgain = document.createElement("div");
+    TRY_AGAIN.appendChild(tryAgain);
 
-        //***************************************WELCOME*************************************************
+    if (welcome === true) {                                 //Determines whether user is granted or denied access to welcome page
+
+    //***************************************WELCOME*************************************************
       
-        RESULT.textContent = "Congratulations!!";
-        document.querySelector(".resultField").setAttribute("style", "color: white; background-color: green; padding 2em;");
-        linkRef.setAttribute("href", "welcome.html");
-        linkRef.setAttribute("id", "linkRef");
-        linkRef.setAttribute("title", "Welcome! Please proceed here.");
-        linkRef.textContent = "Welcome! Please click here to proceed.";
-      }
-      else {
-        //**************************************DENY**************************************************
+      RESULT.textContent = "Congratulations!!";
+      document.querySelector(".resultField").setAttribute("style", "color: white; background-color: green; padding 2em;");
+      linkRef.setAttribute("href", "welcome.html");
+      linkRef.setAttribute("id", "linkRef");
+      linkRef.setAttribute("title", "Welcome! Please proceed here.");
+      linkRef.textContent = "Welcome! Please click here to proceed.";
+    }
+    else {
+    //**************************************DENY**************************************************
 
-        RESULT.textContent = "We're sorry. You just seem to be a normie.";
-        document.querySelector(".resultField").setAttribute("style", "color: white; background-color: red; padding 2em;");
-        linkRef.setAttribute("href", "deny.html");
-        linkRef.setAttribute("id", "linkRef");
-        linkRef.setAttribute("title", "Please leave");
-        linkRef.textContent = "Please, click here to leave.";
+      RESULT.textContent = "We're sorry. You just seem to be a normie.";
+      document.querySelector(".resultField").setAttribute("style", "color: white; background-color: red; padding 2em;");
+      linkRef.setAttribute("href", "deny.html");
+      linkRef.setAttribute("id", "linkRef");
+      linkRef.setAttribute("title", "Please leave");
+      linkRef.textContent = "Please, click here to leave.";
 
-        let b = 0;
-        console.log(b);
-      }
       resetButton = document.createElement("button");
       resetButton.textContent = "Try again?";
-      document.body.appendChild(resetButton);
+      resetButton.setAttribute("style", "reset");
+      tryAgain.appendChild(resetButton);
       resetButton.addEventListener("click", resetForm);
-
     }
-      //**************************************RESET******************************************************
-    function resetForm() {                  
-      var resetResults = document.querySelectorAll(".resultField p");
-      var resetLink = document.getElementById("linkRef");
-      resetResults.textContent = "";
-      resetButton.parentNode.removeChild(resetButton);
-      resetLink.parentNode.removeChild(resetLink);
-      document.querySelector(".linkRef").classList.toggle(".linkStyle");  //doesn't seem to be working
+  }
+    //**************************************RESET******************************************************
+  function resetForm() {                  
+    var resetResults = document.querySelectorAll(".resultField p");
+    var resetLink = document.querySelector(".linkRef .linkStyle");
+    resetResults.textContent = "";
+    resetButton.parentNode.removeChild(resetButton);
+    resetLink.parentNode.removeChild(resetLink);
       
-      NAME_FIELD.disabled = false;
-      AGE_FIELD.disabled = false;
-      SUBMIT_INFO.disabled = false;
-      RESULT.textContent = "";
-      AGE_FIELD.textContent = "";
-      NAME_FIELD.textContent = "";
-      INFO.textContent = "";
-      NAME_FIELD.focus();
-      welcome = false;
-      document.querySelector(".resultField").setAttribute("style", "color: black; background-color: white; padding 2em;");
-      randomNum = Math.floor(Math.random() * 100) + 1;
+    NAME_FIELD.disabled = false;
+    AGE_FIELD.disabled = false;
+    SUBMIT_INFO.disabled = false;
+    RESULT.textContent = "";
+    INFO.textContent = "";
+    NAME_FIELD.value = "";
+    AGE_FIELD.value = "";
+    NAME_FIELD.focus();
+    welcome = false;
+    document.querySelector(".resultField").setAttribute("style", "color: black; background-color: white; padding 2em;");
+    randomNum = Math.floor(Math.random() * 100) + 1;
       
-    }
-  </script>
-      
-
-    </div>
-  </main>
-      
+  }
+</script>
       <script src="bootstrap/js/jquery.slim.js"></script>
       <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
