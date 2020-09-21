@@ -16,10 +16,9 @@
 
 .close {
     color: white;
-    /* float: inline-start; */
     font-size: 18px;
     font-weight: bold;
-}
+ }
 
 .close:hover, .close:focus {
     color: black;
