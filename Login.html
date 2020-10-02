@@ -9,8 +9,53 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
     <title>Illuminati | Login</title>
+    <script>
+//respond to the cookie, when the page loads, 
+//read the cookie, and capture name of user, if it's empty
+      function setCookie(cname, cvalue, exdays){
+        console.log("entering set cookie routine");
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      }
+
+      function getCookie(cname){ //read existing cookies if they are there
+        console.log("loading get cookie...");
+
+        var name = cname + "=";
+        console.log(`document cookie list is ${document.cookie}`);
+        var ca = document.cookie.split(";"); //split based on ;
+        console.log("displaig ca: " + ca);
+
+        for(var i = 0; i < ca.length; i++){
+          var c = ca[i];
+          console.log(`c at i: ${ca[i]}`);
+          while(c.charAt(0) == " ") c = c.substring(1);
+          if(c.indexOf(name) == 0){
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+
+      function checkCookie(){//trigger get and set depending on...
+        var user=getCookie("username"); //username is cookie set by me
+        if(user != ""){
+          alert("welcome back, " + user);
+        }
+        else{
+          user=prompt("Please enter your name: ", ""); //supply text input
+          if(user != "" && user != null){
+            setCookie("username", user, 30); //expiration period
+          }
+        }
+      }
+
+
+    </script>
   </head>
-  <body class="text-center">
+  <body class="text-center" onload="checkCookie()">
     <form class="form-signin" _lpchecked="1">
       <img class="mb-4" src="images/IllEye3.jpg" alt="" width="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -26,11 +71,7 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">© 1776-2020</p>
     </form>
-    <script>
-
-
-
-    </script>
+    
     <script src="bootstrap/js/jquery.slim.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
