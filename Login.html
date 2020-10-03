@@ -9,15 +9,61 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
     <title>Illuminati | Login</title>
+    
+  </head>
+  <body class="text-center">  <!--onload="checkCookie()"-->
+    <form class="form-signin" _lpchecked="1">
+      <img class="mb-4" src="images/IllEye3.jpg" alt="" width="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input id="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input id="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" autocomplete="off">
+      <div class="checkbox mb-3">
+        <label>
+          <input id="rememberMe" type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© 1776-2020</p>
+    </form>
+    
     <script>
-//respond to the cookie, when the page loads, 
-//read the cookie, and capture name of user, if it's empty
+      const email = document.querySelector("#email");
+      const password = document.querySelector("#password");
+      const submit = document.querySelector("#submit");
+      const rememberMe = document.querySelector("#rememberMe");
+
+      submit.addEventListener("click", validate);
+      console.log("waiting...");
+      
+      function validate(){
+        console.log("submitting...");
+        var user = getCookie(email.value);
+        var pass = password.value;
+        // console.log("validating...");
+
+        if(user != ""){
+          // var user = getCookie(email.value);
+          // var pass = password.value;
+          alert("Welcome again " + user);
+        }
+          else {  
+          console.log("validating...");
+          setCookie("username", user, 30);
+          console.log("ya fucked up somewhere");
+        }
+
+      }
+
       function setCookie(cname, cvalue, exdays){
         console.log("entering set cookie routine");
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
         var expires = "expires" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
+        console.log(`hello ${document.cookie}`);
+        location.assign("welcome.html");
       }
 
       function getCookie(cname){ //read existing cookies if they are there
@@ -36,42 +82,29 @@
             return c.substring(name.length, c.length);
           }
         }
+        location.assign("welcome.html");
         return "";
       }
 
-      function checkCookie(){//trigger get and set depending on...
-        var user=getCookie("username"); //username is cookie set by me
-        if(user != ""){
-          alert("welcome back, " + user);
-        }
-        else{
-          user=prompt("Please enter your name: ", ""); //supply text input
-          if(user != "" && user != null){
-            setCookie("username", user, 30); //expiration period
-          }
-        }
-      }
+      // function checkCookie(){//trigger get and set depending on...
+      // console.log("Checking cookie...");
+      
+      //   var user=getCookie("username"); //username is cookie set by me
+      //   if(user != ""){
+      //     alert("welcome back, " + user);
+      //   }
+      //   else{
+      //     // user = document.getElementById("#email");
+      //     // user.addEventListener("click", validate);
+      //     user=prompt("Please enter your name: ", ""); //supply text input
+      //     if(user != "" && user != null){
+      //       setCookie("username", user, 30); //expiration period
+      //     }
+      //   }
+      // }
 
 
     </script>
-  </head>
-  <body class="text-center" onload="checkCookie()">
-    <form class="form-signin" _lpchecked="1">
-      <img class="mb-4" src="images/IllEye3.jpg" alt="" width="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" autocomplete="off">
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">© 1776-2020</p>
-    </form>
-    
     <script src="bootstrap/js/jquery.slim.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
