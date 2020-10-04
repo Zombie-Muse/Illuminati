@@ -28,7 +28,7 @@
       <p class="mt-5 mb-3 text-muted">© 1776-2020</p>
     </form>
     
-    <script>
+    <script>  
       const email = document.querySelector("#email");
       const password = document.querySelector("#password");
       const submit = document.querySelector("#submit");
@@ -37,15 +37,21 @@
       submit.addEventListener("click", validate);
       console.log("waiting...");
 
-      function setCookie(cname, cvalue, exdays){
+      function setCookie(cname, cvalue, exdays){    //sets cookie...obviously
         console.log("entering set cookie routine");
+        console.log("cname: " + cname);
+        console.log("cvalue: " + cvalue);
+        console.log("exdays: " + exdays);
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
         var expires = "expires" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
-        console.log(`hello ${document.cookie}`);
-        alert(document.cookie);
-        location.assign("welcome.html");
+        console.log(`hello, ${document.cookie}`);
+        console.log("Now authenticated");
+        alert(`Welcome, ${cvalue}`);
+        window.location = "welcome.html";
+        window.location.replace("welcome.html");
+        console.log("now redirected");
       }
 
       function getCookie(cname){ //read existing cookies if they are there
@@ -64,46 +70,31 @@
             return c.substring(name.length, c.length);
           }
         }
-        // location.assign("welcome.html");
         return "";
       }
 
-      function validate(){
+      function validate(){      //checks for cookie and validates the data in the form
         console.log("submitting...");
-        var user = getCookie(email.value);
-        var pass = password.value;
-        console.log(email.value);
+        var user = getCookie("username");
 
-        if(user != ""){
-          // var user = getCookie(email.value);
-          // var pass = password.value;
-          alert("Welcome again " + user);
+        if(user != "" && user != null){  
+          var pass = password.value;
+          console.log("Authenticated");
+          alert("Welcome back, " + user + "!");
+          console.log("redirect");
+          location.assign("welcome.html");
+          alert("something happened...");
+          // window.location.assign();
+          // window.location.assign("http://google.com");
         }
           else { 
             user = email.value;
-            console.log("validating...");
-            setCookie("username", user, 30);
-            console.log("ya fucked up somewhere");
+            if (user != "" && user != null){
+              console.log("validating...");
+              setCookie("username", user, 30);
+            }
         }
       }
-
-      // function checkCookie(){//trigger get and set depending on...
-      // console.log("Checking cookie...");
-      
-      //   var user=getCookie("username"); //username is cookie set by me
-      //   if(user != ""){
-      //     alert("welcome back, " + user);
-      //   }
-      //   else{
-      //     // user = document.getElementById("#email");
-      //     // user.addEventListener("click", validate);
-      //     user=prompt("Please enter your name: ", ""); //supply text input
-      //     if(user != "" && user != null){
-      //       setCookie("username", user, 30); //expiration period
-      //     }
-      //   }
-      // }
-
 
     </script>
     <script src="bootstrap/js/jquery.slim.js"></script>
