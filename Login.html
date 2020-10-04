@@ -36,25 +36,6 @@
 
       submit.addEventListener("click", validate);
       console.log("waiting...");
-      
-      function validate(){
-        console.log("submitting...");
-        var user = getCookie(email.value);
-        var pass = password.value;
-        // console.log("validating...");
-
-        if(user != ""){
-          // var user = getCookie(email.value);
-          // var pass = password.value;
-          alert("Welcome again " + user);
-        }
-          else {  
-          console.log("validating...");
-          setCookie("username", user, 30);
-          console.log("ya fucked up somewhere");
-        }
-
-      }
 
       function setCookie(cname, cvalue, exdays){
         console.log("entering set cookie routine");
@@ -63,6 +44,7 @@
         var expires = "expires" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
         console.log(`hello ${document.cookie}`);
+        alert(document.cookie);
         location.assign("welcome.html");
       }
 
@@ -72,7 +54,7 @@
         var name = cname + "=";
         console.log(`document cookie list is ${document.cookie}`);
         var ca = document.cookie.split(";"); //split based on ;
-        console.log("displaig ca: " + ca);
+        console.log("displaying ca: " + ca);
 
         for(var i = 0; i < ca.length; i++){
           var c = ca[i];
@@ -82,8 +64,27 @@
             return c.substring(name.length, c.length);
           }
         }
-        location.assign("welcome.html");
+        // location.assign("welcome.html");
         return "";
+      }
+
+      function validate(){
+        console.log("submitting...");
+        var user = getCookie(email.value);
+        var pass = password.value;
+        console.log(email.value);
+
+        if(user != ""){
+          // var user = getCookie(email.value);
+          // var pass = password.value;
+          alert("Welcome again " + user);
+        }
+          else { 
+            user = email.value;
+            console.log("validating...");
+            setCookie("username", user, 30);
+            console.log("ya fucked up somewhere");
+        }
       }
 
       // function checkCookie(){//trigger get and set depending on...
