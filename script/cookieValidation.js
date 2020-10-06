@@ -18,9 +18,8 @@ const email = document.querySelector("#email");
         console.log(`hello, ${document.cookie}`);
         console.log("Now authenticated");
         alert(`Welcome, ${cvalue}`);
-        window.location = "welcome.html";
-        window.location.replace("welcome.html");
-        console.log("now redirected");
+        // window.location.href = '../index.html';
+        // console.log("now redirected");
       }
 
       function getCookie(cname){ //read existing cookies if they are there
@@ -43,27 +42,29 @@ const email = document.querySelector("#email");
       }
 
       function validate(){
-        
+        var user = email.value;
         if (user != "" && user != null){
-            console.log("validated");
-            location.assign("index.html");
+          console.log("validated");
+          setCookie("authenticated", user, 30);
+          // location.assign("index.html");
         }
         else{
+          alert("ya done fucked up something");
             checkCookie();
         }
       }
 
       function checkCookie(){      //checks for cookie and validates the data in the form
         console.log("submitting...");
-        var user = getCookie("username");
+        var user = getCookie("authenticated");
 
         if(user != "" && user != null){  
-          var pass = password.value;
+          // var pass = password.value;
           console.log("Authenticated");
           alert("Welcome back, " + user + "!");
           console.log("redirect");
           location.assign("welcome.html");
-          alert("something happened...");
+          
           // window.location.assign();
           // window.location.assign("http://google.com");
         }
@@ -71,7 +72,10 @@ const email = document.querySelector("#email");
             user = email.value;
             if (user != "" && user != null){
               console.log("validating...");
-              setCookie("username", user, 30);
+              setCookie("authenticated", user, 30);
+              console.log("now redirecting");
+              location.assign("index.html");
+          
             }
         }
       }
