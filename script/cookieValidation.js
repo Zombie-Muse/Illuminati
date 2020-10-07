@@ -17,8 +17,8 @@ const email = document.querySelector("#email");
         document.cookie = cname + "=" + cvalue + "; " + expires;
         console.log(`hello, ${document.cookie}`);
         console.log("Now authenticated");
-        alert(`Welcome, ${cvalue}`);
-        // window.location.href = '../index.html';
+        // alert(`Welcome, ${cvalue}`);
+        window.location.assign("index.html");
         // console.log("now redirected");
       }
 
@@ -61,7 +61,7 @@ const email = document.querySelector("#email");
         if(user != "" && user != null){  
           // var pass = password.value;
           console.log("Authenticated");
-          alert("Welcome back, " + user + "!");
+          // alert("Welcome back, " + user + "!");
           console.log("redirect");
           location.assign("welcome.html");
           
